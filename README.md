@@ -51,23 +51,25 @@ read how to install in [public document](https://github.com/neovim/neovim/wiki/I
 
 In order to std header completion for cpp. put following command into your ycm_extra_conf.py
 
+**You don't have to use some customized ycm-extra-conf.py. Just add path with "'-I/opt/ros/modeloic/include/"**
+
 ```
-flags = [
-'-Wall',
-'-Wextra',
-'-Wno-variadic-macros',
-'-fexceptions',
-'-DNDEBUG',
-'-DUNIT_TESTS',
-'-std=c++11',
-'-x', 'c++',
-'-isystem', '/home/sehe/custom/boost',
-'-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.8/include',
-'-I', 'src',
-'-I', 'include',
-'-isystem', '/usr/include',
-'-isystem', '/usr/local/include',
-]
+BASE_FLAGS = [
+         '-Wall',
+         '-Wextra',
+         '-Werror',
+         '-Wno-long-long',
+         '-Wno-variadic-macros',
+         '-fexceptions',
+         '-ferror-limit=10000',
+         '-DNDEBUG',
+         '-std=c++14',
+         '-xc++',
+         '-I/usr/lib/',
+         '-I/usr/include/',
+         '-I/opt/ros/melodic/include/'
+         ]
+
 ```
 
 

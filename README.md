@@ -243,3 +243,11 @@ Set Appearance/Themes/Icons -> Vimix
 
 
 
+## Time data (ntp)
+
+Certain environment provides wrong time server, Although I don't know correct solution, displaying correct data time is possible using following command.
+
+```
+timedatectl set-timezone UTC
+```
+

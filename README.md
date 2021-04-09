@@ -111,12 +111,35 @@ alias make='make -j'
 4. reboot
 
 5. use fcitx-configtool to set Alt-change
+in linuxmint, keyboard -> layout -> option
 
 ## Disable trackpad and Mouse faster
 
 1. Setting Mouse & Touchpad
 2. Mouse faster
+check id of trackpoint
+
+```
+xinput --list --shotr
+```
+
+check id of speed in trackpoint
+and here, 13 is id which you check avobe.
+
+```
+xinput --list-props 13
+```
+
+set speed
+here, 13 is trackpoint id, 327 is speed id and 0.85 is a speed
+```
+input --set-prop 13 327 0.85
+```
+
 3. Touchpad off
+
+4. Terminal cursor repeat speed
+keyboard -> typing -> repeat delay shortest & repeat speed fastest
 
 ## Keep screen on
 

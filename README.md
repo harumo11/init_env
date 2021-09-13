@@ -141,6 +141,27 @@ input --set-prop 13 327 0.85
 4. Terminal cursor repeat speed
 keyboard -> typing -> repeat delay shortest & repeat speed fastest
 
+### Another trackpoint speed config
+
+If you use Ubuntu20.04(Linux mint uma) on Thinkpad X1 Carbon gen 6
+you can find configuration file of trackpoint
+
+```
+sudo vim /usr/share/libinput/50-system-lenovo.quirks
+```
+
+You can change following value
+
+```
+[Trackpoint Override]
+MatchUdevType=pointingstick
+MatchName=*TPPS/2 Elan TrackPoint*
+AttrTrackpointMultiplier=2.0  # Higher is Faster
+```
+
+After rebooting, configuration is applied.
+
+
 ## Keep screen on
 
 1. Setting Brightness & Lock

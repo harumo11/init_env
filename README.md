@@ -120,7 +120,7 @@ in linuxmint, keyboard -> layout -> option
 check id of trackpoint
 
 ```
-xinput --list --shotr
+xinput --list --short
 ```
 
 check id of speed in trackpoint

@@ -1,98 +1,125 @@
+" drop vi support - kept for vim compatibility but not needed for nvim
+" Probably not needed with Vim 8+
+set nocompatible
+
+" Search recursively downward from CWD; provides TAB completion for filenames
+" e.g., `:find vim* <TAB>`
+set path+=**
+
+" number of lines at the beginning and end of files checked for file-specific vars
+set modelines=0
+
+" reload files changed outside of Vim not currently modified in Vim (needs below)
+set autoread
+
+" http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
+au FocusGained,BufEnter * :silent! !
+
+" use Unicode
+set encoding=utf-8
+
+" don't create `filename~` backups
+set nobackup
+
+" don't create temp files
+set noswapfile
+
+set number 
+
+" Tab key enters 2 spaces
+" To enter a TAB character when `expandtab` is in effect,
+" CTRL-v-TAB
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4 
+
+" Indent new line the same as the preceding line
+set autoindent
+set smartindent
+
+" statusline indicates insert or normal mode
+set showmode showcmd
+
+" highlight matching parens, braces, brackets, etc
+set showmatch
+
+" http://vim.wikia.com/wiki/Searching
+set hlsearch incsearch ignorecase smartcase
+
+" As opposed to `wrap`
 set nowrap
-set number
-set hlsearch
-set ignorecase
-set smartcase
-set showcmd
-set wildmenu
-set shiftwidth=4
-set softtabstop=4
-set nobackup
-set tabstop=4
-setlocal matchpairs+=<:>
-set clipboard=unnamed
-set nobackup
 
-filetype off
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+set autochdir
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+set wildmenu wildmode=list:longest,full
 
-" let Vundle manage Vundle 
-Plugin 'VundleVim/Vundle.vim'
+" StatusLine always visible, display full path
+" http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
+set laststatus=2 statusline=%F
 
-" Completion
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'vim-jp/vim-cpp'
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'kana/vim-operator-user'
-Plugin 'chenzhiwo/ycm-extra-conf-ros'
+" Use system clipboard
+" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+" for linux
+set clipboard=unnamedplus
+" for macOS
+"set clipboard=unnamed
 
-" Look and feel
-Plugin 'itchyny/lightline.vim'
-Plugin 'tomasr/molokai'
-Plugin 'ntk148v/vim-horizon'
+" Plugins, syntax, and colors
+" ---------------------------------------------------------------------------
+" vim-plug
+" https://github.com/junegunn/vim-plug
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin()
 
-" File operation
-Plugin 'cdelledonne/vim-cmake'
+" Make sure to use single quotes
+" Install with `:PlugInstall`
 
-call vundle#end()
+" https://github.com/itchyny/lightline.vim
+Plug 'itchyny/lightline.vim'
 
-" Completion
-" Vanila ycm-conf
-let g:ycm_global_ycm_extra_conf='/home/harumo/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
-"let g:ycm_global_ycm_extra_conf='/home/harumo/opt/ycm-ros/.ycm_extra_conf.py'
-"let g:ycm_global_ycm_extra_conf='/home/harumo/opt/ycm-extra-conf-ros/ycm_extra_conf.py'
-" Use ctags from YCM
-" let g:ycm_collect_identifiers_from_tags_files = 1
-"let g:ycm_autoclose_preview_window_after_insertion=1
-" Let clangd fully control code completion
-let g:ycm_clangd_uses_ycmd_caching = 0
-" Use installed clangd, not YCM-bundled clangd which doesn't update
-let g:ycm_clangd_binary_path = exepath("clangd")
-imap <c-k> <Plug>(neosnippet_expand_or_jump)
-smap <c-k> <Plug>(neosnippet_expand_or_jump)
-xmap <c-k> <Plug>(neosnippet_expand_target)
-if has('conceal')
-	set conceallevel=2 concealcursor=niv
-endif
+" https://github.com/tpope/vim-commentary
+" Plug 'tpope/vim-commentary'
 
-" Jump, type \de, \dc and \de. to back from definition document, type Cntl-O
-nnoremap <leader>df :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>dc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>de :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" https://github.com/tpope/vim-surround
+" Plug 'tpope/vim-surround'
+"
+Plug 'tpope/vim-sensible'
+Plug 'RRethy/vim-illuminate'
 
-" Look and feel
-"colorscheme molokai
-set termguicolors
-" colorscheme pulumi
-"let g:lightline = {
-"	\ 'colorscheme' : 'horizon',
-"	\ }
+" https://github.com/APZelos/blamer.nvim
+" Plug 'APZelos/blamer.nvim'
 
-" run clang-format when saving cpp or hpp files
-function! s:clang_format()
-	let now_line = line(".")
-	exec ":%! clang-format -style='{BasedOnStyle: WebKit, IndentWidth: 4}'"
-	exec ":" . now_line
-endfunction
+Plug 'haishanh/night-owl.vim'
 
-if executable('clang-format')
-	augroup cpp_clang_format
-		autocmd!
-		autocmd BufWrite,FileWritePre,FileAppendPre *.[ch]pp call s:clang_format()
-	augroup END
-endif
+" Initialize plugin system
+call plug#end()
 
-filetype plugin indent on
 syntax enable
+" Neovim only
+set termguicolors 
 
-" folding setting z-c=close, z-o=open
-set foldmethod=syntax
-set foldlevel=5 "Don't autofold anythig"
+" Light scheme
+colorscheme night-owl
 
+" Dark scheme
+set background=dark
+
+" lightline config - add file 'absolutepath'
+" Delete colorscheme line below if using Dark scheme
+
+let g:lightline = { 'colorscheme': 'nightowl' }
+
+"let g:lightline = {
+"      \ 'colorscheme': 'PaperColor_light',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'readonly', 'absolutepath', 'modified' ] ]
+"      \ }
+"      \ }
+"
+"let g:blamer_enabled = 1
+"" %a is the day of week, in case it's needed
+"let g:blamer_date_format = '%e %b %Y'
+"highlight Blamer guifg=darkorange

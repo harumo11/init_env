@@ -15,6 +15,8 @@ sudo apt install build-essential cmake cmake-gui doxygen doxygen-gui libboost-al
   ```
   
 
+
+
 ## Console font[mint]
 
 Terminal -> Preference
@@ -179,3 +181,9 @@ git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
 
+
+
+## Other software
+
+- joplin (snap package)
+- vscode 

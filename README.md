@@ -48,7 +48,27 @@ export CXX=clang++
 alias make='make -j'
 ```
 
+### Lazyvim
 
+- change `s` keymap to default functionality
+
+  - go to `.config/nvim/lua/plugins/`
+
+  - make `keymap.lua`
+
+  - copy following config
+    ```
+    return {
+      {
+        "folke/flash.nvim",
+        keys = {
+          { "s", mode = { "n", "x", "o" }, false },
+        },
+      },
+    }
+    ```
+
+    
 
 ## Input Method
 

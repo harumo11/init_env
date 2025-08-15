@@ -1,0 +1,23 @@
+{
+    "coc.preferences.formatOnType": false,
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.parameterTypes": false,
+    "python.formatting.autopep8Args": ["--max-line-length=180"],
+    "inlayHint.enable": false,
+    "semanticTokens.enabled": true,
+    "semanticTokens.filetypes": [
+      "python",
+      "py",
+      "c",
+      "hpp",
+      "h",
+      "cpp"
+    ],
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd",
+    "clangd.arguments": ["--header-insertion=iwyu"],
+    "clangd.semanticHighlighting": true,
+    "coc.preferences.snippetSupport": true,
+    "clangd.fallbackFlags": ["-std=c++20"],
+    "coc.preferences.formatOnSave": true,
+    "clangd-format.style": "LLVM"
+}

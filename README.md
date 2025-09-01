@@ -15,8 +15,6 @@ sudo apt install build-essential cmake cmake-gui doxygen doxygen-gui libboost-al
   ```
   
 
-
-
 ## Console font[mint]
 
 Terminal -> Preference

@@ -150,6 +150,10 @@ After rebooting, configuration is applied.
 
 ### Nvidia proprietary driver(GPGPU and DeepLearning)
 
+see [driver_and_cuda](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=24.04&target_type=deb_network) or retrieve `ubuntu cuda install`.
+
+Don't forget you need nvidia driver and cuda.
+
 see [here](http://gihyo.jp/admin/serial/01/ubuntu-recipe/0454?page=2)
 when reboot, **you mast enroll the key**.
 After installation, try following command.
@@ -193,6 +197,7 @@ upload the key into [GitHub](https://github.com/settings/ssh)
 
 
 ### config
+see [reference](https://zenn.dev/taroosg/articles/20241128185741-7ff336de9ad0c2)
 
 ```
 git config --global user.email "you@example.com"

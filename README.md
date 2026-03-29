@@ -206,6 +206,38 @@ git config --global user.name "Your Name"
 
 
 
+## conda
+
+to disable conda at terminal launch, use following command.
+
+```
+conda config --set auto_activate_base false
+```
+
+
+
+## venv in ROS ws
+
+```
+# 1. ROS 2 環境の読み込み
+source /opt/ros/rolling/setup.bash
+if [ -f install/setup.bash ]; then
+  source install/setup.bash
+fi
+
+# 2. .venv を直接アクティベートする (layout python は使わない)
+if [ -d .venv ]; then
+  source .venv/bin/activate
+else
+  echo "Warning: .venv directory not found. Please create it first."
+fi
+
+# 3. PYTHONPATH を調整して .venv を最優先にする (念のため)
+export PYTHONPATH=$(pwd)/.venv/lib/python3.12/site-packages:$PYTHONPATH
+```
+
+
+
 ## Other software
 
 - joplin (snap package)

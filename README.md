@@ -46,6 +46,8 @@ export CXX=clang++
 alias make='make -j'
 ```
 
+## oh-my-bash
+
 ### Lazyvim
 
 - change `s` keymap to default functionality
@@ -236,6 +238,12 @@ fi
 export PYTHONPATH=$(pwd)/.venv/lib/python3.12/site-packages:$PYTHONPATH
 ```
 
+
+## environment variable
+- claude code agent teams
+- hf token/user
+- gemini api key
+- nvim
 
 
 ## Other software
